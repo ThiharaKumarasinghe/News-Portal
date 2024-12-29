@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { Button } from "./ui/button";
 import {
@@ -10,8 +11,10 @@ import {
 } from "./ui/navigation-menu";
 import { Switch } from "./ui/switch";
 import MobileMenu from "./MobileMenu";
+import { usePathname } from "next/navigation";
 
 const NavBar = () => {
+    const pathname = usePathname()
    
   return (
     <header className=" py-4 bg-white text-gray-900 transition-colors duration-300 shadow-md">
@@ -25,7 +28,7 @@ const NavBar = () => {
         <NavigationMenu className="hidden lg:flex">
           <NavigationMenuList className="flex space-x-8">
             <NavigationMenuItem>
-              <NavigationMenuLink href="/news" className="hover:text-gray-600">
+              <NavigationMenuLink href="/news" className={`hover:text-gray-600 ${pathname === '/news' ? 'text-gray-950 font-semibold' : ''}`}>
                 News
               </NavigationMenuLink>
             </NavigationMenuItem>
@@ -39,7 +42,7 @@ const NavBar = () => {
                   <li>
                     <NavigationMenuLink
                       href="/services/web-development"
-                      className="hover:text-gray-600"
+                      className={`hover:text-gray-600 `}
                     >
                       Web Development
                     </NavigationMenuLink>
@@ -65,13 +68,13 @@ const NavBar = () => {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <NavigationMenuLink href="/about" className="hover:text-gray-600">
+              <NavigationMenuLink href="/about" className={`hover:text-gray-600 ${pathname === '/about' ? 'text-gray-950 font-semibold' : ''}`}>
                 About
               </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <NavigationMenuLink href="/contact" className="hover:text-gray-600">
+              <NavigationMenuLink href="/contact" className={`hover:text-gray-600 ${pathname === '/contact' ? 'text-gray-950 font-semibold' : ''}`}>
                 Contact
               </NavigationMenuLink>
             </NavigationMenuItem>
